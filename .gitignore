@@ -1,0 +1,16 @@
+# Credentials — never commit these
+.env
+*.env.local
+*.zip
+
+# Dependencies — reinstalled via npm ci on deploy
+node_modules/
+
+# TypeScript source — dist/ is what Portainer deploys
+src/
+tsconfig.json
+
+# Misc
+*.js.map
+.DS_Store
+Thumbs.db

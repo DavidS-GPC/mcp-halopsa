@@ -150,5 +150,23 @@ export function registerTicketTools(server) {
             };
         }
     });
+    server.tool('halopsa_close_ticket', 'Close a HaloPSA ticket with an optional closing note.', {
+        ticket_id: z.number().int().describe('HaloPSA ticket ID to close'),
+        note: z.string().optional().describe('Optional closing note visible in the ticket history'),
+    }, async ({ ticket_id, note }) => {
+        try {
+            const action = {
+                ticket_id,
+                note: note ?? 'Ticket closed.',
+                outcome: 'close',
+                sendemail: false,
+            };
+            const { data } = await haloClient.post('/Actions', [action]);
+            return { content: [{ type: 'text', text: JSON.stringify(data, null, 2) }] };
+        }
+        catch (e) {
+            return { content: [{ type: 'text', text: `Error: ${e instanceof Error ? e.message : String(e)}` }], isError: true };
+        }
+    });
 }
 //# sourceMappingURL=tickets.js.map

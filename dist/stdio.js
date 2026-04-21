@@ -24,6 +24,9 @@ const { registerReportTools } = await import('./tools/reports.js');
 const { registerSiteTools } = await import('./tools/sites.js');
 const { registerUserTools } = await import('./tools/users.js');
 const { registerAssetTools } = await import('./tools/assets.js');
+const { registerContractTools } = await import('./tools/contracts.js');
+const { registerKbTools } = await import('./tools/kb.js');
+const { registerInvoiceTools } = await import('./tools/invoices.js');
 // ── 3. Wire up server ──────────────────────────────────────────────────────
 const server = new McpServer({ name: 'mcp-halopsa', version: '1.0.0' });
 registerTicketTools(server);
@@ -35,6 +38,9 @@ registerReportTools(server);
 registerSiteTools(server);
 registerUserTools(server);
 registerAssetTools(server);
+registerContractTools(server);
+registerKbTools(server);
+registerInvoiceTools(server);
 const transport = new StdioServerTransport();
 await server.connect(transport);
 //# sourceMappingURL=stdio.js.map

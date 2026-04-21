@@ -16,6 +16,9 @@ import { registerReportTools } from './tools/reports.js';
 import { registerSiteTools } from './tools/sites.js';
 import { registerUserTools } from './tools/users.js';
 import { registerAssetTools } from './tools/assets.js';
+import { registerContractTools } from './tools/contracts.js';
+import { registerKbTools } from './tools/kb.js';
+import { registerInvoiceTools } from './tools/invoices.js';
 const PORT = parseInt(process.env.PORT ?? '3003', 10);
 const streamableTransports = new Map();
 const sseTransports = new Map();
@@ -30,6 +33,9 @@ function createServer() {
     registerSiteTools(server);
     registerUserTools(server);
     registerAssetTools(server);
+    registerContractTools(server);
+    registerKbTools(server);
+    registerInvoiceTools(server);
     return server;
 }
 const app = express();
